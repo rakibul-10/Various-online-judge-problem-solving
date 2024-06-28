@@ -1,0 +1,85 @@
+Problem Link-->https://atcoder.jp/contests/abc358/tasks/abc358_d
+
+#include <bits/stdc++.h>
+using namespace std;
+#define fio ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)
+#define ll long long
+#define ull unsinged long long
+#define pie acos(-1)
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+const long long mod = 998244353;
+ll fact[100009];
+vector<vector<int>> allDivisors;
+// 8 * j
+int binarySearch(int arr[], int sz, int lf, int target)
+{
+    int left = lf;
+    int right = sz - 1;
+    int ans = -1;
+
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] >= target)
+        {
+            right = mid - 1;
+            ans = mid;
+        }
+        else
+            left = mid + 1;
+    }
+    return ans;
+}
+void solve()
+{
+    int n, m, pos;
+    ll sum = 0;
+    cin >> n >> m;
+    vector<int> v;
+    int a[n];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    int b[n];
+    for (int i = 0; i < m; i++)
+        cin >> b[i];
+    sort(a, a + n);
+    sort(b, b + m);
+    pos = binarySearch(a, n, 0, b[0]);
+    if (pos == -1)
+    {
+        cout << -1 << endl;
+        return;
+    }
+    v.push_back(pos);
+    sum += a[pos];
+    for (int i = 1; i < m; i++)
+    {
+        pos = binarySearch(a, n, v[v.size() - 1] + 1, b[i]);
+        if (pos == -1)
+        {
+            cout << -1 << endl;
+            return;
+        }
+        v.push_back(pos);
+        sum += a[pos];
+    }
+    cout<<sum<<endl;
+}
+int main()
+{
+    fio;
+#ifdef _Local
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+
+    int T = 1;
+    // cin >> T;
+    for (int __ = 1; __ <= T; __++)
+    {
+        // cout <<"Case "<<__<<": ";
+        solve();
+    }
+    return 0;
+}
