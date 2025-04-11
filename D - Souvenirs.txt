@@ -75,11 +75,10 @@ int main()
 #endif
 
     int T = 1;
-    // cin >> T;
-    for (int __ = 1; __ <= T; __++)
+        for (int __ = 1; __ <= T; __++)
     {
         // cout <<"Case "<<__<<": ";
         solve();
     }
-    
+    return 0;
 }
