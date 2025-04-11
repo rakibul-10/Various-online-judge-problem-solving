@@ -11,7 +11,7 @@ using namespace std;
 const long long mod = 998244353;
 ll fact[100009];
 vector<vector<int>> allDivisors;
-// 8 * j
+
 int binarySearch(int arr[], int sz, int lf, int target)
 {
     int left = lf;
@@ -75,10 +75,11 @@ int main()
 #endif
 
     int T = 1;
-        for (int __ = 1; __ <= T; __++)
+    // cin >> T;
+    for (int __ = 1; __ <= T; __++)
     {
-        // cout <<"Case "<<__<<": ";
+    
         solve();
     }
-    return 0;
+    
 }
